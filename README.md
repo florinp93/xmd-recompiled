@@ -35,37 +35,40 @@ The long-term objective is to create a version of X-Men: Destiny that can run on
 
 ## 🚧 Project Status
 
-> ### 🟠 Early Development
+> ### 🟢 Playable — Active Development
 >
-> XMD Recompiled is currently an active research and reverse-engineering project.
-> The project is **not yet a complete playable PC port**.
+> **XMD Recompiled is currently playable from start to finish, with some minor issues and glitches still being addressed.**
+>
+> Development is now focused on improving compatibility, polishing the experience, and implementing missing PC-specific features.
 
 | Area | Status |
 |---|---|
-| Reverse Engineering | 🟡 In Progress |
-| Executable Analysis | 🟡 In Progress |
-| Game Architecture Documentation | 🟡 In Progress |
-| Static Recompilation Research | 🟡 In Progress |
-| Native Runtime | 🔴 Experimental |
-| Graphics | 🔴 Research |
-| Audio | 🔴 Research |
-| Input | 🔴 Research |
-| Gameplay Systems | 🔴 Research |
-| Full Game Compatibility | 🔴 Not Yet Playable |
+| Reverse Engineering | 🟡 Ongoing |
+| Executable Analysis | 🟡 Ongoing |
+| Game Architecture Documentation | 🟡 Ongoing |
+| Static Recompilation | 🟢 Functional |
+| Native Runtime | 🟢 Functional |
+| Graphics | 🟢 Functional — Minor Issues |
+| Audio | 🟢 Functional |
+| Input | 🟡 Controller Support Functional |
+| Keyboard & Mouse Support | 🟠 In Development |
+| DualShock / DualSense Support | 🟡 Functional — Native Glyphs Pending |
+| Xbox Controller Support | 🟢 Functional |
+| Ultrawide Support | 🟠 Planned |
+| Gameplay Systems | 🟢 Functional |
+| Full Game Compatibility | 🟢 Playable — Minor Issues |
 
----
+### Current Known Limitations
 
-## 🔬 Current Objectives
+The game is already playable, but several features are still being improved or implemented:
 
-The current work focuses on understanding how the original game functions internally.
+- 🐛 Minor gameplay and graphical glitches remain
+- ⌨️ Keyboard and mouse support is not yet implemented
+- 🎮 DualShock and DualSense controllers work, but the game currently displays the original Xbox 360 button glyphs
+- 🖥️ Ultrawide resolutions are not yet supported
+- 🔧 Additional compatibility and stability improvements are ongoing
 
-### Reverse Engineering
-
-- Analyze the original game executables
-- Recover function boundaries and important symbols
-- Identify major engine and gameplay systems
-- Study code flow and subsystem dependencies
-- Document discoveries for future development
+> The current focus is on turning the existing playable port into a polished, fully featured native PC experience.
 
 ### Game Architecture
 
