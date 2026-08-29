@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="assets/images/hero.jpg" alt="X-Men: Destiny" width="100%">
+<img src="<img width="512" height="192" alt="image" src="https://github.com/user-attachments/assets/3a91d22e-8ed6-4b08-b619-2cfa190e72f6" />
+![Uploading image.png…]()
+" alt="X-Men: Destiny" width="100%">
 
 # XMD Recompiled
 
