@@ -33,6 +33,14 @@ scaffolding; the ReXGlue SDK itself lives under `thirdparty/`.
 ├── src/
 │   ├── main.cpp                   # App entry point
 │   └── xmd_app.h                  # App class - override hooks here (user-owned)
+├── launcher/                      # Standalone launcher (ImGui + DX11)
+│   ├── CMakeLists.txt             # Launcher build config
+│   └── src/                       # Launcher source (main, config, UI)
+├── installer/                     # Inno Setup installer script
+│   ├── xmd_installer.iss          # Installer definition
+│   └── assets/                    # Default config + icons
+├── tools/                         # ISO extraction + analysis tools
+│   └── extract-xiso/              # Xbox 360 ISO extractor
 ├── game/                          # Extracted Xbox 360 game files (gitignored)
 │   └── default.xex                #   <- entrypoint XEX goes here
 ├── metadata/                      # Achievement icons / embedded metadata
@@ -116,6 +124,52 @@ Override virtual hooks in `src/xmd_app.h` (e.g. `OnPostSetup`,
 `OnCreateDialogs`, `OnConfigurePaths`). That file is **user-owned** and
 preserved across `rexglue init` / `rexglue migrate`. See
 `docs/rexglue_notes.md` for the full hook list and workflow reference.
+
+## Building a release
+
+The release consists of three components:
+1. **xmd.exe** - the game port (built from `src/` + generated code)
+2. **xmd_launcher.exe** - a standalone launcher with a user-friendly settings UI
+3. **Installer** - an Inno Setup .exe that asks for the game ISO, extracts it,
+   and installs everything
+
+### Prerequisites for release builds
+
+- All build prerequisites from above
+- [Inno Setup 6+](https://jrsoftware.org/isdl.php) (for the installer)
+
+### Build everything
+
+```powershell
+.\build_release.ps1
+```
+
+This builds:
+- `xmd.exe` (the game) via `cmake --preset win-amd64-release`
+- `xmd_launcher.exe` (the launcher) via `launcher/CMakeLists.txt`
+- `extract-xiso.exe` (ISO extraction tool bundled with the installer)
+- `xmd_installer.exe` (the final installer, if Inno Setup is available)
+
+Output: `installer_output/xmd_installer.exe`
+
+### The launcher
+
+The launcher (`launcher/`) is a standalone C++ Win32 + ImGui + DirectX 11 app.
+It provides a user-friendly UI for configuring graphics, input, and advanced
+settings, then spawns `xmd.exe` with the chosen parameters. It has zero runtime
+dependencies (statically linked CRT, DirectX 11 is built into Windows 10+).
+
+### The installer
+
+The installer (`installer/xmd_installer.iss`) is an Inno Setup script that:
+1. Asks the user for their legally obtained X-Men Destiny ISO
+2. Asks for an install destination
+3. Extracts the ISO using the bundled `extract-xiso` tool
+4. Copies the game port binaries, launcher, and runtime DLLs
+5. Creates a desktop shortcut to the launcher
+
+Users do not need to install any additional software - the installer is a
+self-contained .exe.
 
 ## License
 

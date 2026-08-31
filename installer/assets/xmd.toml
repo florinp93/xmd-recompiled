@@ -1,0 +1,10 @@
+resolution_scale = 1
+native_2x_msaa = false
+vsync = true
+fullscreen = true
+clock_no_scaling = true
+anisotropic_override = 0
+present_dither = true
+present_effect = "bilinear"
+log_level = "info"
+log_file = "xmd_runtime.log"
