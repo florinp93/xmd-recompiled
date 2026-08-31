@@ -1,4 +1,4 @@
-; X-Men Destiny PC Port - Inno Setup Installer Script
+﻿; X-Men Destiny PC Port - Inno Setup Installer Script
 ;
 ; Produces a self-contained installer .exe that:
 ;   1. Asks the user for their game ISO
@@ -11,8 +11,8 @@
 ; Requires: Inno Setup 6+ (https://jrsoftware.org/isdl.php)
 
 #define XmdAppName "X-Men Destiny"
-#define XmdAppVersion "0.1.0-alpha.1"
-#define XmdAppVersionNumeric "0.1.0.1"
+#define XmdAppVersion "0.1.0-alpha.2"
+#define XmdAppVersionNumeric "0.1.0.2"
 #define XmdAppPublisher "xmd-recompiled"
 #define XmdAppExeName "xmd_launcher.exe"
 #define XmdGameExeName "xmd.exe"
@@ -136,3 +136,4 @@ begin
     CreateDir(ExpandConstant('{app}\user_data'));
   end;
 end;
+
