@@ -1,212 +1,125 @@
-<div align="center">
-
-<img width="512" height="192" alt="image" src="https://github.com/user-attachments/assets/d1b2bdd2-7c00-435d-b7a2-46b80f2f5441" />
-
-# XMD Recompiled
-
-### X-Men: Destiny — Native PC Port
-
-**An ongoing reverse-engineering, recompilation and preservation project bringing the 2011 action RPG X-Men: Destiny to modern PCs.**
-
-<br>
-
-![Status](https://img.shields.io/badge/Status-Early%20Development-orange)
-![Platform](https://img.shields.io/badge/Platform-Windows-blue)
-![Original Platform](https://img.shields.io/badge/Original-Xbox%20360%20%7C%20PS3-lightgrey)
-![License](https://img.shields.io/badge/License-See%20Repository-green)
-
-</div>
-
----
-
-## 📖 What is XMD Recompiled?
-
-**XMD Recompiled** is a community-driven effort to bring **X-Men: Destiny** to modern Windows PCs through reverse engineering and native recompilation.
-
-This is **not an emulator**.
-
-The goal is to study the original Xbox 360 version, understand its executable and runtime architecture, and progressively reconstruct the systems required to run the game as a native PC application.
-
-The long-term objective is to create a version of X-Men: Destiny that can run on modern PC hardware without requiring the original console.
-
-> **Preserve the game. Understand its technology. Bring it to modern PCs.**
-
----
-
-## 🚧 Project Status
-
-> ### 🟢 Playable — Active Development
->
-> **XMD Recompiled is currently playable from start to finish, with some minor issues and glitches still being addressed.**
->
-> Development is now focused on improving compatibility, polishing the experience, and implementing missing PC-specific features.
-
-| Area | Status |
-|---|---|
-| Reverse Engineering | 🟡 Ongoing |
-| Executable Analysis | 🟡 Ongoing |
-| Game Architecture Documentation | 🟡 Ongoing |
-| Static Recompilation | 🟢 Functional |
-| Native Runtime | 🟢 Functional |
-| Graphics | 🟢 Functional — Minor Issues |
-| Audio | 🟢 Functional |
-| Input | 🟡 Controller Support Functional |
-| Keyboard & Mouse Support | 🟠 In Development |
-| DualShock / DualSense Support | 🟡 Functional — Native Glyphs Pending |
-| Xbox Controller Support | 🟢 Functional |
-| Ultrawide Support | 🟠 Planned |
-| Gameplay Systems | 🟢 Functional |
-| Full Game Compatibility | 🟢 Playable — Minor Issues |
-
-### Current Known Limitations
-
-The game is already playable, but several features are still being improved or implemented:
-
-- 🐛 Minor gameplay and graphical glitches remain
-- ⌨️ Keyboard and mouse support is not yet implemented
-- 🎮 DualShock and DualSense controllers work, but the game currently displays the original Xbox 360 button glyphs
-- 🖥️ Ultrawide resolutions are not yet supported
-- 🔧 Additional compatibility and stability improvements are ongoing
-
-> The current focus is on turning the existing playable port into a polished, fully featured native PC experience.
-
-### Game Architecture
-
-Research and document systems such as:
-
-- Application startup
-- Game initialization
-- Memory management
-- Rendering
-- Input
-- Audio
-- Entities and actors
-- Animation
-- Combat
-- Abilities and powers
-- X-Genes
-- Save data
-- Mission and level systems
-
-### Networking
-
-Research the game's networking architecture, including:
-
-- Packet framing
-- Opcodes
-- Message dispatch
-- Client/server communication
-- Sessions
-- Networked entities
-
-### Native PC Runtime
-
-The eventual goal is to replace or recreate the Xbox 360-specific runtime environment with a modern PC-compatible implementation.
-
-This includes investigating the systems necessary to support:
-
-- Native x86-64 execution
-- Modern Windows APIs
-- Keyboard and mouse input
-- Controller support
-- Modern GPU APIs
-- Modern display resolutions
-- Widescreen and ultrawide support
-- Improved compatibility with current hardware
-
----
-
-## 🧬 About X-Men: Destiny
-
-Released in **2011** and developed by **Silicon Knights**, X-Men: Destiny is an action RPG set in the Marvel universe.
-
-Unlike most X-Men games, players do not control an established hero as the main protagonist. Instead, they choose one of several original characters and develop their mutant abilities throughout the game.
-
-### Choose Your Origin
-
-Play as one of three unique protagonists, each with their own background and story.
-
-### Manifest Your Powers
-
-Develop your character using different mutant power paths and abilities.
-
-### Choose Your Allegiance
-
-Make choices that influence your relationship with the **X-Men** and the **Brotherhood**.
-
-### Equip X-Genes
-
-Collect genetic enhancements inspired by established Marvel mutants and use them to customize your combat abilities.
-
----
-
-## 🛡️ Why Does This Project Exist?
-
-X-Men: Destiny never received an official PC release.
-
-The game was also removed from digital storefronts, leaving the original console versions as the primary way to experience it.
-
-Games such as this are at risk of becoming increasingly difficult to access as their original hardware ages.
-
-**XMD Recompiled exists as a preservation and technical research project.**
-
-The goal is not only to make the game playable on modern systems, but also to document and preserve knowledge about its technology and architecture.
-
-> Games should not disappear simply because the hardware they were designed for becomes obsolete.
-
----
-
-## 🖥️ Project Vision
-
-The long-term vision for XMD Recompiled is:
-
-- 🎮 Native PC execution
-- 🖥️ Modern resolutions
-- 🖥️ Widescreen support
-- 🖥️ Ultrawide support
-- ⌨️ Keyboard and mouse support
-- 🎮 Modern controller support
-- ⚡ Improved performance
-- 🔧 Compatibility improvements
-- 🛠️ Modding possibilities
-- 📚 Preserved technical documentation
-
-The ultimate goal is to create the **definitive modern PC version of X-Men: Destiny** while documenting the technology required to make that possible.
-
----
-
-## 🧪 Technical Approach
-
-XMD Recompiled is being developed through a combination of:
-
-- Reverse engineering
-- Binary analysis
-- Static recompilation research
-- Executable analysis
-- Assembly analysis
-- Ghidra
-- Runtime reconstruction
-- Native code development
-- Compatibility-layer development
-
-The exact implementation will evolve as more of the original game's architecture is understood.
-
----
-
-## 📂 Repository Structure
-
-```text
+<p align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/Patreon-Become%20a%20Patron-FF424D?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Ko--Fi-Buy%20me%20a%20coffee-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Other-Projects-0AB4F5?style=for-the-badge&logo=github&logoColor=white" alt="Other Projects" />
+  </a>
+</p>
+
+# X-Men Destiny - Xbox 360 to PC Port (ReXGlue)
+
+A static recompilation port of **X-Men Destiny** (Xbox 360) to native PC,
+built with the [ReXGlue SDK](https://github.com/rexglue/rexglue-sdk).
+
+ReXGlue converts Xbox 360 PowerPC XEX executables into portable C++ that runs
+natively on Windows (D3D12) and Linux (Vulkan) - no emulation, no JIT at
+runtime. This project contains the port configuration, custom hooks, and build
+scaffolding; the ReXGlue SDK itself lives under `thirdparty/`.
+
+## Project layout
+
+```
 .
-├── assets/
-│   └── images/          # README and project images
-│
-├── docs/                # Technical documentation
-│
-├── research/            # Reverse-engineering notes and research
-│
-├── src/                 # Native runtime and project source code
-│
-├── tools/               # Analysis and development tools
-│
-├── README.md
-└── LICENSE
+├── CMakeLists.txt                 # Build config
+├── CMakePresets.json              # Platform build presets
+├── xmd_manifest.toml              # ReXGlue project manifest
+├── generated/
+│   ├── rexglue.cmake              # SDK boilerplate (auto-generated, DO NOT EDIT)
+│   └── default/                   # codegen output (gitignored, built on demand)
+├── src/
+│   ├── main.cpp                   # App entry point
+│   └── xmd_app.h                  # App class - override hooks here (user-owned)
+├── game/                          # Extracted Xbox 360 game files (gitignored)
+│   └── default.xex                #   <- entrypoint XEX goes here
+├── metadata/                      # Achievement icons / embedded metadata
+├── thirdparty/
+│   └── rexglue-sdk/               # ReXGlue SDK (cloned via setup script, gitignored)
+├── docs/
+│   └── rexglue_notes.md           # ReXGlue workflow & command reference
+├── setup.ps1 / setup.sh           # Clone SDK + init submodules
+└── .gitignore
+```
+
+## Prerequisites
+
+- **Windows 10/11 x64** (this project targets Windows/D3D12)
+- **Clang 18+** (LLVM/Clang) - already detected: Clang 22
+- **CMake 3.25+**
+- **Ninja** build system
+- **Visual Studio 2022** (for the Windows SDK / D3D12 headers)
+
+## Getting started
+
+### 1. Set up the SDK
+
+```powershell
+.\setup.ps1
+```
+
+This clones the ReXGlue SDK (pinned to `v0.10.0`) into `thirdparty/rexglue-sdk`
+and initializes its submodules.
+
+### 2. Provide the game files
+
+Extract your ripped Xbox 360 ISO into `game/`. The entrypoint executable must be
+at `game/default.xex` (the path set in `xmd_manifest.toml`). Keep the
+original directory layout for all other assets.
+
+> **Do not commit anything under `game/`** - it contains copyrighted assets used
+> locally for recompilation only.
+
+### 3. Build the SDK CLI (one time)
+
+```powershell
+cmake --preset win-amd64-release -DREXSDK_DIR=thirdparty\rexglue-sdk
+cmake --build out\build\win-amd64-release --target rexglue
+```
+
+Add the built `rexglue.exe` to your PATH (it lives under
+`thirdparty\rexglue-sdk\out\win-amd64\Release\`).
+
+### 4. Regenerate SDK-managed files
+
+Once `game/default.xex` exists, regenerate the SDK-managed scaffolding so it
+carries the exact version/build stamp:
+
+```powershell
+rexglue init --force --project_name xmd --project_root . --xex_path game\default.xex --game_root game
+```
+
+### 5. Configure & build the port
+
+```powershell
+cmake --preset win-amd64-relwithdebinfo -DREXSDK_DIR=thirdparty\rexglue-sdk
+cmake --build out\build\win-amd64-relwithdebinfo
+```
+
+The build automatically runs `rexglue codegen` (translating the XEX to C++) the
+first time and whenever inputs change. Output: `out\win-amd64\RelWithDebInfo\xmd.exe`.
+
+### 6. Run
+
+```powershell
+.\out\win-amd64\RelWithDebInfo\xmd.exe
+# Useful flags:
+#   --log_level=trace     verbose logging
+#   --log_file=run.log    write logs to file
+```
+
+## Customizing the port
+
+Override virtual hooks in `src/xmd_app.h` (e.g. `OnPostSetup`,
+`OnCreateDialogs`, `OnConfigurePaths`). That file is **user-owned** and
+preserved across `rexglue init` / `rexglue migrate`. See
+`docs/rexglue_notes.md` for the full hook list and workflow reference.
+
+## License
+
+This repository contains only port scaffolding and configuration. The ReXGlue
+SDK is licensed under the BSD 3-Clause License (see `thirdparty/rexglue-sdk/`).
+X-Men Destiny and all game assets are property of their respective rights
+holders; nothing under `game/` is distributed here.

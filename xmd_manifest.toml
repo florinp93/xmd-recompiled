@@ -1,0 +1,161 @@
+[project]
+name = "xmd"
+sdk_version = "0.10.0"
+game_root = "game"
+
+[entrypoint]
+file_path = "game/default.xex"
+out_directory_path = "generated/default"
+includes = []
+
+[entrypoint.functions]
+0x82C6A4C8 = { name = "sub_82C6A4C8" }
+0x82C645C8 = { name = "sub_82C645C8" }
+0x828467F8 = { name = "sub_828467F8" }
+0x82608CF0 = { name = "sub_82608CF0" }
+0x826EA140 = { name = "sub_826EA140" }
+0x826EA120 = { end = 0x826EA140 }
+0x82AB1D50 = { name = "sub_82AB1D50" }
+0x82AB1BE8 = { end = 0x82AB1D50 }
+0x8275F240 = { end = 0x8275F260 }
+0x8275F260 = { name = "sub_8275F260" }
+0x82551DC0 = { end = 0x82551DD0 }
+0x82551DD0 = { name = "sub_82551DD0", end = 0x82551DE0 }
+0x82551DE0 = { name = "sub_82551DE0", end = 0x82551DF0 }
+0x82551DF0 = { name = "sub_82551DF0" }
+0x827D2708 = { end = 0x827D2770 }
+0x827D2770 = { name = "sub_827D2770" }
+0x827C9460 = { end = 0x827C9490 }
+0x827C9490 = { name = "sub_827C9490" }
+0x827C93A0 = { end = 0x827C93B8 }
+0x827C93B8 = { name = "sub_827C93B8" }
+0x8278CE40 = { end = 0x8278CE50 }
+0x8278CE50 = { name = "sub_8278CE50" }
+0x828734A0 = { end = 0x828734B8 }
+0x828734B8 = { name = "sub_828734B8" }
+0x8275F1D8 = { end = 0x8275F1F8 }
+0x8275F1F8 = { name = "sub_8275F1F8" }
+0x8279D6D0 = { end = 0x8279D700 }
+0x8279D700 = { name = "sub_8279D700" }
+0x827C54A0 = { end = 0x827C54A8 }
+0x827C54A8 = { name = "sub_827C54A8" }
+0x829656C8 = { end = 0x82965708 }
+0x82965708 = { name = "sub_82965708" }
+0x82981F18 = { end = 0x82981F98 }
+0x82981F98 = { name = "sub_82981F98" }
+0x83193FC0 = { end = 0x83194568 }
+0x83194568 = { name = "sub_83194568" }
+0x82633208 = { end = 0x82633228 }
+0x82633228 = { name = "sub_82633228" }
+0x8257A100 = { end = 0x8257A110 }
+0x8257A110 = { name = "sub_8257A110", end = 0x8257A120 }
+0x8257A120 = { name = "sub_8257A120" }
+0x826D50F8 = { end = 0x826D5120 }
+0x826D5120 = { name = "sub_826D5120" }
+0x8278CF30 = { end = 0x8278CF40 }
+0x8278CF40 = { name = "sub_8278CF40" }
+0x8233D090 = { end = 0x8233D0A0 }
+0x8233D0A0 = { name = "sub_8233D0A0" }
+0x825D7980 = { name = "sub_825D7980" }
+0x8233D068 = { name = "sub_8233D068" }
+0x8233D078 = { name = "sub_8233D078" }
+0x8233D0B0 = { name = "sub_8233D0B0" }
+0x8233D0C0 = { name = "sub_8233D0C0" }
+0x8233D0D0 = { name = "sub_8233D0D0" }
+0x8233D0E0 = { name = "sub_8233D0E0" }
+0x823B9DB0 = { name = "sub_823B9DB0" }
+0x823EB760 = { name = "sub_823EB760" }
+0x823EB770 = { name = "sub_823EB770" }
+0x823EB780 = { name = "sub_823EB780" }
+0x8242F970 = { name = "sub_8242F970" }
+0x8243CC00 = { name = "sub_8243CC00" }
+0x8243CC10 = { name = "sub_8243CC10" }
+0x824A3D00 = { name = "sub_824A3D00" }
+0x824BCBF8 = { name = "sub_824BCBF8" }
+0x824FC748 = { name = "sub_824FC748" }
+0x824FC758 = { name = "sub_824FC758" }
+0x824FC768 = { name = "sub_824FC768" }
+0x824FC778 = { name = "sub_824FC778" }
+0x8252B2E0 = { name = "sub_8252B2E0" }
+0x8252B2F0 = { name = "sub_8252B2F0" }
+0x8252B300 = { name = "sub_8252B300" }
+0x8252B310 = { name = "sub_8252B310" }
+0x82535630 = { name = "sub_82535630" }
+0x82541C28 = { name = "sub_82541C28" }
+0x82541C38 = { name = "sub_82541C38" }
+0x82541C48 = { name = "sub_82541C48" }
+0x82541C58 = { name = "sub_82541C58" }
+0x82551E00 = { name = "sub_82551E00" }
+0x82551E10 = { name = "sub_82551E10" }
+0x82551E20 = { name = "sub_82551E20" }
+0x82551E30 = { name = "sub_82551E30" }
+0x82551E40 = { name = "sub_82551E40" }
+0x82551E50 = { name = "sub_82551E50" }
+0x82551E60 = { name = "sub_82551E60" }
+0x8255B158 = { name = "sub_8255B158" }
+0x8255B168 = { name = "sub_8255B168" }
+0x8255B178 = { name = "sub_8255B178" }
+0x8255B188 = { name = "sub_8255B188" }
+0x825AC740 = { name = "sub_825AC740" }
+0x825EC510 = { name = "sub_825EC510" }
+0x829E8698 = { name = "sub_829E8698" }
+0x829E86A8 = { name = "sub_829E86A8" }
+0x829E86B8 = { name = "sub_829E86B8" }
+0x829E86C8 = { name = "sub_829E86C8" }
+0x829E86D8 = { name = "sub_829E86D8" }
+0x829E86E8 = { name = "sub_829E86E8" }
+0x829E86F8 = { name = "sub_829E86F8" }
+0x829E8708 = { name = "sub_829E8708" }
+0x829E8718 = { name = "sub_829E8718" }
+0x829E8728 = { name = "sub_829E8728" }
+0x823F1700 = { name = "sub_823F1700", end = 0x823F1858 }
+0x824086F8 = { name = "sub_824086F8", end = 0x824089A0 }
+0x82408C00 = { name = "sub_82408C00", end = 0x824092A0 }
+0x823DDB08 = { name = "sub_823DDB08_ModifyTurret", end = 0x823DDDD8 }
+0x823DDDD8 = { name = "sub_823DDDD8_RunDestinyMoment", end = 0x823E2A90 }
+0x823E2A90 = { name = "sub_823E2A90_SpendXP", end = 0x823E2C60 }
+0x823E2C60 = { name = "sub_823E2C60_LevelUpFanfare", end = 0x823E2DA8 }
+0x823E2DA8 = { name = "sub_823E2DA8_HUDMAP_TrackActor", end = 0x823E2E88 }
+0x823E2E88 = { name = "sub_823E2E88_SetGameMode", end = 0x823E38B0 }
+0x823E38B0 = { name = "sub_823E38B0_SetGameModeSucceeded", end = 0x823E39A0 }
+0x823E39A0 = { name = "sub_823E39A0_SetGameModeFailed", end = 0x823E39B8 }
+0x823E39B8 = { name = "sub_823E39B8_EnableDefensiveTargets", end = 0x823E3B10 }
+0x823E3B10 = { name = "sub_823E3B10_DisableDefensiveTargets", end = 0x823E3BC0 }
+0x823E3BC0 = { name = "sub_823E3BC0_GetAvatar", end = 0x823E3C70 }
+0x823E3C70 = { name = "sub_823E3C70_IsComiconBuild", end = 0x823E3D88 }
+0x823E3D88 = { name = "sub_823E3D88_DropXGene", end = 0x823E4800 }
+0x823E4800 = { name = "sub_823E4800_DisplayCombatText", end = 0x823E8648 }
+0x823E8648 = { name = "sub_823E8648_DisplayCombatTextByCharacterName", end = 0x823E8718 }
+0x823E8718 = { name = "sub_823E8718_SetPoweredCombatCostToZero", end = 0x823E87C8 }
+0x823E87C8 = { name = "sub_823E87C8_ResetPoweredCombatCost", end = 0x823E8830 }
+0x823E8830 = { name = "sub_823E8830_ChangeXSlideTargetType", end = 0x823E8898 }
+0x823E8898 = { name = "sub_823E8898_DisplayGameMomentCombatText", end = 0x823E8958 }
+0x823E8958 = { name = "sub_823E8958_SetGroundSmashSize", end = 0x823E89F0 }
+0x823E89F0 = { name = "sub_823E89F0_ShowCharacterBio", end = 0x823E8AC0 }
+0x823E8AC0 = { name = "sub_823E8AC0_EndChapter", end = 0x823E8B28 }
+0x823E8B28 = { name = "sub_823E8B28_EndArena", end = 0x823E8B78 }
+0x823E8B78 = { name = "sub_823E8B78_XMDMemReport", end = 0x823E8BD0 }
+0x823E8BD0 = { name = "sub_823E8BD0_XMDStartSecondPlaythrough", end = 0x823E8C30 }
+0x823E8C30 = { name = "sub_823E8C30_XMDPlayCredits", end = 0x823E8C58 }
+0x823E8C58 = { name = "sub_823E8C58_XMDEnableQuicksliverMotionBlur", end = 0x823E8DB0 }
+0x823E8DB0 = { name = "sub_823E8DB0_ChangeMiniMap", end = 0x823E8E88 }
+0x823E8E88 = { name = "sub_823E8E88_XMDGetFactionAlignment", end = 0x823E8EC0 }
+0x823E8EC0 = { name = "sub_823E8EC0_WasActorUsed", end = 0x823E8FB8 }
+0x823E8FB8 = { name = "sub_823E8FB8_EnableXPDrop", end = 0x823E9070 }
+0x823E9070 = { name = "sub_823E9070_IsInCampaign", end = 0x823E90D0 }
+0x823E90D0 = { name = "sub_823E90D0_NULL", end = 0x823EB750 }
+0x823EB750 = { name = "sub_823EB750", end = 0x823EB760 }
+0x825CD3C0 = { end = 0x825CD4B8 }
+0x825CD4B8 = { name = "sub_825CD4B8", end = 0x825CD4C0 }
+0x825CD4C0 = { name = "sub_825CD4C0", end = 0x825CD678 }
+0x825CD678 = { name = "sub_825CD678", end = 0x825CD680 }
+0x8294BEE0 = { name = "sub_8294BEE0", end = 0x8294BFA0 }
+0x8269A820 = { name = "sub_8269A820" }
+0x825329E8 = { name = "sub_825329E8" }
+0x82CB27D8 = { name = "sub_82CB27D8" }
+0x82C6AFB0 = { name = "sub_82C6AFB0" }
+0x823C8730 = { name = "sub_823C8730" }
+0x824B9970 = { name = "sub_824B9970" }
+0x82D90B18 = { name = "sub_82D90B18" }
+0x82D90B30 = { name = "sub_82D90B30" }
+0x828CE0A0 = { name = "sub_828CE0A0" }
