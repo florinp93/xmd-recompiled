@@ -1,5 +1,6 @@
 #include "config.h"
 #include "launcher_ui.h"
+#include "updater.h"
 #include "version.h"
 #include <imgui.h>
 #include <imgui_impl_win32.h>
@@ -9,6 +10,9 @@
 #include <windows.h>
 #include <filesystem>
 #include <string>
+#include <future>
+#include <optional>
+#include <chrono>
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND, UINT, WPARAM, LPARAM);
 
@@ -137,6 +141,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
     wc.style = CS_CLASSDC;
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
+    wc.hIcon = LoadIconW(hInstance, L"IDI_ICON1");
+    wc.hIconSm = LoadIconW(hInstance, L"IDI_ICON1");
     wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wc.lpszClassName = L"XmdLauncher";
     RegisterClassExW(&wc);
@@ -179,6 +185,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
     bool shouldExit = false;
     bool running = true;
 
+    std::optional<UpdateInfo> pending_update;
+    bool show_update_modal = false;
+    bool trigger_download = false;
+    std::future<std::optional<UpdateInfo>> check_future =
+        std::async(std::launch::async, []() { return CheckForUpdate(XMD_VERSION_STRING); });
+    std::future<bool> download_future;
+    bool is_downloading = false;
+    std::filesystem::path installer_path;
+
     while (running) {
         MSG msg;
         while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
@@ -192,7 +207,35 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
+        if (check_future.valid() &&
+            check_future.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+            pending_update = check_future.get();
+            if (pending_update) show_update_modal = true;
+        }
+
+        if (is_downloading && download_future.valid() &&
+            download_future.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+            if (download_future.get()) {
+                RunInstallerAndExit(installer_path, GetCurrentProcessId());
+                running = false;
+            } else {
+                is_downloading = false;
+            }
+        }
+
+        if (trigger_download) {
+            trigger_download = false;
+            is_downloading = true;
+            installer_path = std::filesystem::temp_directory_path() / "xmd_installer_update.exe";
+            download_future = std::async(std::launch::async,
+                [info = *pending_update, path = installer_path]() { return DownloadInstaller(info.installer_url, path); });
+        }
+
         RenderLauncherUI(config, shouldLaunch, shouldExit);
+
+        if (pending_update) {
+            RenderUpdateModal(*pending_update, show_update_modal, trigger_download);
+        }
 
         if (shouldLaunch) {
             LaunchGame(config);

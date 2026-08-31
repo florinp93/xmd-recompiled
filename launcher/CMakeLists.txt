@@ -68,6 +68,7 @@ set(LAUNCHER_SOURCES
     src/main.cpp
     src/config.cpp
     src/launcher_ui.cpp
+    src/updater.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/generated_resources.rc
 )
 
