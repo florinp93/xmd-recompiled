@@ -1,6 +1,10 @@
 <p align="center">
+  <img src="docs/images/banner.png" alt="X-Men Destiny PC Port" />
+</p>
+
+<p align="center">
   <a href="https://www.patreon.com/cw/zerkiller">
-    <img src="docs/images/banner.png" alt="X-Men Destiny PC Port - Support on Patreon" />
+    <img src="https://img.shields.io/badge/Patreon-Become%20a%20Patron-FF424D?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon" />
   </a>
 </p>
 
