@@ -11,7 +11,8 @@
 ; Requires: Inno Setup 6+ (https://jrsoftware.org/isdl.php)
 
 #define XmdAppName "X-Men Destiny"
-#define XmdAppVersion "1.0.0"
+#define XmdAppVersion "0.1.0-alpha.1"
+#define XmdAppVersionNumeric "0.1.0.1"
 #define XmdAppPublisher "xmd-recompiled"
 #define XmdAppExeName "xmd_launcher.exe"
 #define XmdGameExeName "xmd.exe"
@@ -21,6 +22,8 @@ AppId={{XMD-DESTINY-PC-PORT}}
 AppName={#XmdAppName}
 AppVersion={#XmdAppVersion}
 AppPublisher={#XmdAppPublisher}
+VersionInfoVersion={#XmdAppVersionNumeric}
+VersionInfoTextVersion={#XmdAppVersion}
 DefaultDirName={autopf}\{#XmdAppName}
 DefaultGroupName={#XmdAppName}
 DisableProgramGroupPage=yes

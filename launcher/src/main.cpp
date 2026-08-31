@@ -1,5 +1,6 @@
 #include "config.h"
 #include "launcher_ui.h"
+#include "version.h"
 #include <imgui.h>
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
@@ -140,8 +141,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
     wc.lpszClassName = L"XmdLauncher";
     RegisterClassExW(&wc);
 
+    std::wstring title = L"X-Men Destiny Launcher v" XMD_VERSION_STRING_WIDE;
     HWND hwnd = CreateWindowExW(
-        0, wc.lpszClassName, L"X-Men Destiny Launcher",
+        0, wc.lpszClassName, title.c_str(),
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, 720, 560,
         nullptr, nullptr, hInstance, nullptr);

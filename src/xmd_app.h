@@ -29,14 +29,90 @@
 #include <rex/ui/keybinds.h>
 
 #include <SDL3/SDL.h>
+#include <dbghelp.h>
+#include <cstdio>
 #include <fstream>
 #include <vector>
 #include <mutex>
 #include <algorithm>
 #include <unordered_map>
 
+#include "version.h"
+
+#define XMD_VERSION_TEXT "X-Men Destiny PC Port v" XMD_VERSION_STRING
+
+static std::atomic<bool> g_minidump_written{false};
+
+static std::filesystem::path GetMinidumpPath() {
+  wchar_t path[MAX_PATH] = {};
+  GetModuleFileNameW(nullptr, path, MAX_PATH);
+  std::filesystem::path exe(path);
+
+  // Timestamped dump name so multiple crashes don't overwrite each other
+  SYSTEMTIME st;
+  GetLocalTime(&st);
+  wchar_t buf[64];
+  swprintf_s(buf, L"xmd_crash_%04u%02u%02u_%02u%02u%02u.dmp",
+             st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+  return exe.parent_path() / buf;
+}
+
+static void xmd_write_minidump(PEXCEPTION_POINTERS ep) {
+  if (g_minidump_written.exchange(true)) return;
+
+  HMODULE hDbgHelp = LoadLibraryW(L"DbgHelp.dll");
+  if (!hDbgHelp) {
+    REXCPU_WARN("xmd_write_minidump: failed to load DbgHelp.dll");
+    return;
+  }
+
+  using MiniDumpWriteDumpFn = BOOL (WINAPI*)(
+      HANDLE hProcess, DWORD ProcessId, HANDLE hFile, MINIDUMP_TYPE DumpType,
+      PMINIDUMP_EXCEPTION_INFORMATION ExceptionParam,
+      PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
+      PMINIDUMP_CALLBACK_INFORMATION CallbackParam);
+
+  auto pMiniDumpWriteDump = reinterpret_cast<MiniDumpWriteDumpFn>(
+      GetProcAddress(hDbgHelp, "MiniDumpWriteDump"));
+  if (!pMiniDumpWriteDump) {
+    REXCPU_WARN("xmd_write_minidump: MiniDumpWriteDump not found");
+    FreeLibrary(hDbgHelp);
+    return;
+  }
+
+  auto dump_path = GetMinidumpPath();
+  HANDLE hFile = CreateFileW(dump_path.wstring().c_str(), GENERIC_WRITE,
+                             0, nullptr, CREATE_ALWAYS,
+                             FILE_ATTRIBUTE_NORMAL, nullptr);
+  if (hFile == INVALID_HANDLE_VALUE) {
+    REXCPU_WARN("xmd_write_minidump: failed to open {}", dump_path.string());
+    FreeLibrary(hDbgHelp);
+    return;
+  }
+
+  MINIDUMP_EXCEPTION_INFORMATION info = {};
+  info.ThreadId = GetCurrentThreadId();
+  info.ExceptionPointers = ep;
+  info.ClientPointers = FALSE;
+
+  BOOL ok = pMiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(),
+                               hFile, MiniDumpWithIndirectlyReferencedMemory,
+                               &info, nullptr, nullptr);
+  CloseHandle(hFile);
+  FreeLibrary(hDbgHelp);
+
+  if (ok) {
+    REXCPU_WARN("Crash minidump written to: {}", dump_path.string());
+  } else {
+    DeleteFileW(dump_path.wstring().c_str());
+  }
+}
+
 static LONG WINAPI xmd_vectored_handler(PEXCEPTION_POINTERS ep) {
-  if (ep->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) {
+  const uint32_t code = ep->ExceptionRecord->ExceptionCode;
+
+  // Guest access violation logging
+  if (code == EXCEPTION_ACCESS_VIOLATION) {
     uint64_t fault_addr = ep->ExceptionRecord->ExceptionInformation[1];
     if (fault_addr >= 0x100000000ull && fault_addr < 0x1E0000000ull) {
       uint32_t guest_addr = (uint32_t)(fault_addr - 0x100000000ull);
@@ -62,12 +138,36 @@ static LONG WINAPI xmd_vectored_handler(PEXCEPTION_POINTERS ep) {
       }
     }
   }
+
+  // Write minidump for fatal exception types
+  if (code == EXCEPTION_ACCESS_VIOLATION ||
+      code == EXCEPTION_ILLEGAL_INSTRUCTION ||
+      code == EXCEPTION_INT_DIVIDE_BY_ZERO ||
+      code == EXCEPTION_STACK_OVERFLOW ||
+      code == EXCEPTION_IN_PAGE_ERROR ||
+      code == EXCEPTION_BREAKPOINT) {
+    REXCPU_WARN("VEH: fatal exception 0x{:08X} at RIP=0x{:016X} - writing minidump",
+                code, ep->ContextRecord->Rip);
+    xmd_write_minidump(ep);
+  }
+
   return EXCEPTION_CONTINUE_SEARCH;
 }
 
-static struct XmdVehInstaller {
-  XmdVehInstaller() { AddVectoredExceptionHandler(1, xmd_vectored_handler); }
-} xmd_veh_installer;
+static LONG WINAPI xmd_unhandled_filter(PEXCEPTION_POINTERS ep) {
+  REXCPU_WARN("Unhandled exception 0x{:08X} at RIP=0x{:016X} - writing minidump",
+              ep->ExceptionRecord->ExceptionCode,
+              ep->ContextRecord ? ep->ContextRecord->Rip : 0);
+  xmd_write_minidump(ep);
+  return EXCEPTION_EXECUTE_HANDLER;
+}
+
+static struct XmdCrashHandlerInstaller {
+  XmdCrashHandlerInstaller() {
+    AddVectoredExceptionHandler(1, xmd_vectored_handler);
+    SetUnhandledExceptionFilter(xmd_unhandled_filter);
+  }
+} xmd_crash_handler_installer;
 
 extern "C" void __imp__KeBugCheckEx(PPCContext& ctx, uint8_t* base) {
   (void)base;
@@ -336,6 +436,7 @@ class XmdApp : public rex::ReXApp {
   }
 
   void OnPostSetup() override {
+    REXGPU_INFO("{}", XMD_VERSION_TEXT);
     auto rs = REXCVAR_QUERY(int32_t, resolution_scale);
     auto msaa = REXCVAR_QUERY(bool, native_2x_msaa);
     REXGPU_INFO("OnPostSetup: resolution_scale={} native_2x_msaa={}", rs, msaa);

@@ -1,0 +1,3 @@
+#pragma once
+
+#define XMD_VERSION_STRING "@XMD_VERSION_STRING@"

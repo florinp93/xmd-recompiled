@@ -1,4 +1,5 @@
 #include "launcher_ui.h"
+#include "version.h"
 #include <imgui.h>
 #include <algorithm>
 #include <cmath>
@@ -95,7 +96,7 @@ void RenderLauncherUI(LaunchConfig& config, bool& shouldLaunch, bool& shouldExit
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.5f, 0.5f, 0.5f, 1.0f));
     ImGui::SetWindowFontScale(1.0f);
-    ImGui::Text(" PC Port");
+    ImGui::Text(" PC Port v%s", XMD_VERSION_STRING);
     ImGui::PopStyleColor();
     ImGui::SetWindowFontScale(1.0f);
     ImGui::EndChild();

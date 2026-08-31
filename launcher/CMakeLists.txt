@@ -25,10 +25,37 @@ set(IMGUI_SOURCES
     ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
 )
 
+# --- Read version from root VERSION file ---
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/../VERSION" XMD_VERSION_STRING)
+string(STRIP "${XMD_VERSION_STRING}" XMD_VERSION_STRING)
+
+if(XMD_VERSION_STRING MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(.*)$")
+    set(XMD_VERSION_MAJOR ${CMAKE_MATCH_1})
+    set(XMD_VERSION_MINOR ${CMAKE_MATCH_2})
+    set(XMD_VERSION_PATCH ${CMAKE_MATCH_3})
+    set(XMD_VERSION_SUFFIX ${CMAKE_MATCH_4})
+    if(XMD_VERSION_SUFFIX MATCHES "([0-9]+)")
+        set(XMD_VERSION_BUILD ${CMAKE_MATCH_1})
+    else()
+        set(XMD_VERSION_BUILD 0)
+    endif()
+else()
+    set(XMD_VERSION_MAJOR 0)
+    set(XMD_VERSION_MINOR 1)
+    set(XMD_VERSION_PATCH 0)
+    set(XMD_VERSION_BUILD 0)
+    set(XMD_VERSION_STRING "0.1.0")
+endif()
+
 # --- Generate resources in build dir so rc.exe finds xmd_icon.ico ---
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/resources.rc.in
     ${CMAKE_CURRENT_BINARY_DIR}/generated_resources.rc
+    @ONLY
+)
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/version.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.h
     @ONLY
 )
 configure_file(
@@ -50,6 +77,7 @@ target_include_directories(xmd_launcher PRIVATE
     ${imgui_SOURCE_DIR}
     ${imgui_SOURCE_DIR}/backends
     ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 # Static link CRT so the launcher has zero runtime deps
