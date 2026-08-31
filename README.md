@@ -1,12 +1,6 @@
 <p align="center">
-  <a href="#">
-    <img src="https://img.shields.io/badge/Patreon-Become%20a%20Patron-FF424D?style=for-the-badge&logo=patreon&logoColor=white" alt="Patreon" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/Ko--Fi-Buy%20me%20a%20coffee-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/Other-Projects-0AB4F5?style=for-the-badge&logo=github&logoColor=white" alt="Other Projects" />
+  <a href="https://www.patreon.com/cw/zerkiller">
+    <img src="docs/images/banner.png" alt="X-Men Destiny PC Port - Support on Patreon" />
   </a>
 </p>
 
