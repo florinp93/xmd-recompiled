@@ -34,8 +34,8 @@ ArchitecturesInstallIn64BitMode=x64compatible
 PrivilegesRequired=lowest
 DisableDirPage=no
 DirExistsWarning=no
-UninstallDisplayIcon={app}\{#XmdAppExeName}
-SetupIconFile=assets\icon.ico
+UninstallDisplayIcon={app}\xmd_icon.ico
+SetupIconFile=assets\xmd_icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -49,11 +49,10 @@ Source: "build\launcher\Release\xmd_launcher.exe"; DestDir: "{app}"; Flags: igno
 
 ; Game executable + runtime DLLs (built from the port project)
 Source: "build\xmd\Release\xmd.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\xmd\Release\rexruntime.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\xmd\Release\rexgpu-xenos.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\xmd\Release\rexgpu-xenosd.dll"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "build\xmd\Release\rexruntimed.dll"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "build\xmd\Release\TracyClient.dll"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "build\xmd\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+; Icon
+Source: "assets\xmd_icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Default config
 Source: "assets\xmd.toml"; DestDir: "{app}"; Flags: onlyifdoesntexist
@@ -62,9 +61,9 @@ Source: "assets\xmd.toml"; DestDir: "{app}"; Flags: onlyifdoesntexist
 Source: "tools\extract-xiso\build\extract-xiso.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
 
 [Icons]
-Name: "{group}\{#XmdAppName}"; Filename: "{app}\{#XmdAppExeName}"
+Name: "{group}\{#XmdAppName}"; Filename: "{app}\{#XmdAppExeName}"; IconFilename: "{app}\xmd_icon.ico"
 Name: "{group}\Uninstall {#XmdAppName}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\{#XmdAppName}"; Filename: "{app}\{#XmdAppExeName}"; Tasks: desktopicon
+Name: "{userdesktop}\{#XmdAppName}"; Filename: "{app}\{#XmdAppExeName}"; Tasks: desktopicon; IconFilename: "{app}\xmd_icon.ico"
 
 [Run]
 ; Extract the ISO into the game\ subdirectory

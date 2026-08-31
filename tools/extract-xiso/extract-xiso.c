@@ -260,6 +260,8 @@
 #if defined( _WIN32 )
 	#include <direct.h>
 	#include "win32/dirent.c"
+	#include "win32/getopt.h"
+	extern int asprintf(char **buffer, const char *fmt, ...);
 #else
 	#include <dirent.h>
 	#include <limits.h>
@@ -329,10 +331,6 @@
 	#define S_ISDIR( x )				( ( x ) & _S_IFDIR )
 	#define S_ISREG( x )				( ( x ) & _S_IFREG )
 
-	#include "win32/getopt.c"
-#if defined(_MSC_VER)
-	#include "win32/asprintf.c"
-#endif
 	#define lseek						_lseeki64
 	#define mkdir( a, b )				mkdir( a )
 

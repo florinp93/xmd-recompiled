@@ -228,7 +228,6 @@ void RenderLauncherUI(LaunchConfig& config, bool& shouldLaunch, bool& shouldExit
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.70f, 0.14f, 0.14f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.85f, 0.22f, 0.22f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.95f, 0.30f, 0.30f, 1.0f));
-    ImGui::PushFont(ImGui::GetFont());
     ImGui::SetWindowFontScale(1.3f);
     if (ImGui::Button("PLAY", ImVec2(btnW, btnH))) {
         shouldLaunch = true;

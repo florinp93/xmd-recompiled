@@ -88,14 +88,7 @@ std::string GetMonitorResolution() {
 }
 
 std::string ScaleResolution(int scale) {
-    DEVMODEW dm = {};
-    dm.dmSize = sizeof(dm);
-    if (EnumDisplaySettingsW(nullptr, ENUM_CURRENT_SETTINGS, &dm)) {
-        int w = dm.dmPelsWidth * scale;
-        int h = dm.dmPelsHeight * scale;
-        return std::to_string(w) + "x" + std::to_string(h);
-    }
-    int w = 1920 * scale;
-    int h = 1080 * scale;
+    int w = XMD_NATIVE_WIDTH * scale;
+    int h = XMD_NATIVE_HEIGHT * scale;
     return std::to_string(w) + "x" + std::to_string(h);
 }

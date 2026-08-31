@@ -25,3 +25,6 @@ struct LaunchConfig {
 
 std::string GetMonitorResolution();
 std::string ScaleResolution(int scale);
+
+constexpr int XMD_NATIVE_WIDTH = 1280;
+constexpr int XMD_NATIVE_HEIGHT = 720;

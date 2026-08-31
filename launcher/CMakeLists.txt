@@ -25,11 +25,23 @@ set(IMGUI_SOURCES
     ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
 )
 
-# --- Launcher executable ---
+# --- Generate resources in build dir so rc.exe finds xmd_icon.ico ---
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/resources.rc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/generated_resources.rc
+    @ONLY
+)
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/xmd_icon.ico
+    ${CMAKE_CURRENT_BINARY_DIR}/xmd_icon.ico
+    COPYONLY
+)
+
 set(LAUNCHER_SOURCES
     src/main.cpp
     src/config.cpp
     src/launcher_ui.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/generated_resources.rc
 )
 
 add_executable(xmd_launcher WIN32 ${LAUNCHER_SOURCES} ${IMGUI_SOURCES})

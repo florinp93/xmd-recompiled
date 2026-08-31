@@ -7,6 +7,18 @@ set(SOURCE_FILES
 	extract-xiso.c
 )
 
+if(WIN32)
+	list(APPEND SOURCE_FILES
+		win32/getopt.c
+		win32/asprintf.c
+	)
+endif()
+
 add_executable(extract-xiso ${SOURCE_FILES})
-target_compile_definitions(extract-xiso PRIVATE ${TARGET_OS})
+
+if(WIN32)
+	target_include_directories(extract-xiso PRIVATE win32)
+	target_compile_definitions(extract-xiso PRIVATE ${TARGET_OS} _CRT_SECURE_NO_WARNINGS WIN32)
+endif()
+
 install(TARGETS extract-xiso RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
